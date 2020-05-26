@@ -36,6 +36,7 @@ public class CursomcApplication implements CommandLineRunner{
 		Produto p2 = new Produto(2,"Impressora", 800.00);
 		Produto p3 = new Produto(3,"Mouse", 80.00);
 		
+        /*
 		categoriaRepository.deleteAll();
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		
@@ -51,6 +52,7 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		*/
 		
 	}
 

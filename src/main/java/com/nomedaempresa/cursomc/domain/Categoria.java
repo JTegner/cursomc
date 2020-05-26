@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Entity
@@ -25,6 +28,12 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 	
+	/* o objetivo eh buscar a categoria e seus produtos
+	 * @JsonManagedReference referencia gerencia da pelo json
+	 * deste lado virao os objetos associados
+	 * do outro lado na classe produto usa-se @JsonBackReference
+	 */
+	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	

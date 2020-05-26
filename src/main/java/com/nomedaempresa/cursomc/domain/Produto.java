@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Entity /*jpa*/
@@ -23,6 +25,10 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
+	/*@JsonBackReference do outro lado da associacao ja foram buscados os objetos
+	 * nao busca mais, vai omitir a lista de categorias para cada produto
+	 */
+	@JsonBackReference 
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 			joinColumns = @JoinColumn(name = "produto_id"),
