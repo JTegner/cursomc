@@ -14,11 +14,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity /*jpa*/
 @Data /*lombok*/
+@EqualsAndHashCode(of = "id", callSuper = false)
 public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +34,7 @@ public class Produto implements Serializable {
 	/*@JsonBackReference do outro lado da associacao ja foram buscados os objetos
 	 * nao busca mais, vai omitir a lista de categorias para cada produto
 	 */
-	@JsonBackReference 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 			joinColumns = @JoinColumn(name = "produto_id"),
@@ -39,6 +42,7 @@ public class Produto implements Serializable {
 	)
 	private List<Categoria> categorias = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
 	
@@ -52,6 +56,8 @@ public class Produto implements Serializable {
 		this.preco = preco;
 	}
 	
+	/*colocado JsonIgnore porque tudo o que comeca com get eh serializado*/
+	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		List<Pedido> lista = new ArrayList<>();
 		for (ItemPedido x: itens) {

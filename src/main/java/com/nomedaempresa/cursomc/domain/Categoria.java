@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
+@EqualsAndHashCode(of = "id", callSuper = false)
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/*Serializable significa que os objetos da classe
@@ -32,7 +32,6 @@ public class Categoria implements Serializable {
 	 * deste lado virao os objetos associados
 	 * do outro lado na classe produto usa-se @JsonBackReference
 	 */
-	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	

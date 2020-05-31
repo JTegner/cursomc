@@ -68,6 +68,7 @@ public class CursomcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		/*
 		Categoria cat1 = new Categoria(1,"Informática");
 		Categoria cat2 = new Categoria(2,"Escritório");
 		
@@ -157,7 +158,7 @@ public class CursomcApplication implements CommandLineRunner{
 		p3.getItens().addAll(Arrays.asList(ip2));
 
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
-		
+		*/
 	}
 
 }

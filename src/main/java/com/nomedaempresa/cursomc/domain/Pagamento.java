@@ -10,14 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nomedaempresa.cursomc.domain.enums.EstadoPagamento;
-import com.nomedaempresa.cursomc.domain.enums.TipoCliente;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
+@EqualsAndHashCode(of = "id", callSuper = false)
 public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +28,7 @@ public abstract class Pagamento implements Serializable {
 	private Integer id;
 	private Integer estado;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId /*para dizer que o id do pedido eh igual ao id do pedido*/
