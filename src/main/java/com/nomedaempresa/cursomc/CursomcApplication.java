@@ -69,18 +69,18 @@ public class CursomcApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		/*
-		Categoria cat1 = new Categoria(1,"Informática");
-		Categoria cat2 = new Categoria(2,"Escritório");
+		Categoria cat1 = new Categoria(null,"Informática");
+		Categoria cat2 = new Categoria(null,"Escritório");
 		
-		Produto p1 = new Produto(1,"Computador", 2000.00);
-		Produto p2 = new Produto(2,"Impressora", 800.00);
-		Produto p3 = new Produto(3,"Mouse", 80.00);
+		Produto p1 = new Produto(null,"Computador", 2000.00);
+		Produto p2 = new Produto(null,"Impressora", 800.00);
+		Produto p3 = new Produto(null,"Mouse", 80.00);
 		
 		//categoriaRepository.deleteAll();
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		//categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		
 		//produtoRepository.deleteAll();
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		//produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
@@ -92,32 +92,32 @@ public class CursomcApplication implements CommandLineRunner{
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
-		Estado est1 = new Estado(1,"Minas Gerais");
-		Estado est2 = new Estado(2,"São Paulo");
+		Estado est1 = new Estado(null,"Minas Gerais");
+		Estado est2 = new Estado(null,"São Paulo");
 		
 		//estadoRepository.deleteAll();
-		estadoRepository.saveAll(Arrays.asList(est1, est2));
 
 		//cidadeRepository.deleteAll();
 
-		Cidade c1 = new Cidade(1,"Uberlândia", est1);
-		Cidade c2 = new Cidade(2,"São Paulo", est2);
-		Cidade c3 = new Cidade(3,"Campinas", est2);
+		Cidade c1 = new Cidade(null,"Uberlândia", est1);
+		Cidade c2 = new Cidade(null,"São Paulo", est2);
+		Cidade c3 = new Cidade(null,"Campinas", est2);
 		
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
 
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(1, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
-		clienteRepository.saveAll(Arrays.asList(cli1));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		//clienteRepository.saveAll(Arrays.asList(cli1));
 		
 		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
-		clienteRepository.saveAll(Arrays.asList(cli1));
+		//clienteRepository.saveAll(Arrays.asList(cli1));
 		
-		Endereco e1 = new Endereco(1, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
-		Endereco e2 = new Endereco(2, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+		//enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 		
@@ -126,15 +126,15 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		Pedido ped1 = new Pedido(1, sdf.parse("30/09/2017 10:32"), cli1, e1);
-		Pedido ped2 = new Pedido(2, sdf.parse("10/10/2017 19:35"), cli1, e2);
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
 		
 		// nao posso instanciar pagamento porque eh uma classe abstrata
 		// tem que instanciar direto a subclasse
-		Pagamento pagto1 = new PagamentoComCartao(1, EstadoPagamento.QUITADO, ped1, 6);
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
 		
-		Pagamento pagto2 = new PagamentoComBoleto(2, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
 		ped2.setPagamento(pagto2);
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
@@ -146,12 +146,12 @@ public class CursomcApplication implements CommandLineRunner{
 		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
 		
-		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		//itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 
 		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
 		ped2.getItens().addAll(Arrays.asList(ip3));
 		
-		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		//itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 
 		p1.getItens().addAll(Arrays.asList(ip1));
 		p2.getItens().addAll(Arrays.asList(ip3));
@@ -159,6 +159,7 @@ public class CursomcApplication implements CommandLineRunner{
 
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 		*/
+		
 	}
 
 }
