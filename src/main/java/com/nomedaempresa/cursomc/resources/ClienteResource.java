@@ -18,11 +18,11 @@ public class ClienteResource {
 	private ClienteService clienteService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		/* ResponseEntity spring encapsula varias informacoes de uma resposta http*/
 		/* <?> qualquer tipo */
 		
-		Cliente obj = clienteService.buscar(id);
+		Cliente obj = clienteService.find(id);
 		//return ResponseEntity.ok().body(obj);
 		return obj != null ? ResponseEntity.ok(obj) : ResponseEntity.noContent().build();
 	}

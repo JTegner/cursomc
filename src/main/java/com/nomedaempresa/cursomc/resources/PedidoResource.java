@@ -18,11 +18,11 @@ public class PedidoResource {
 	private PedidoService pedidoService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) {
 		/* ResponseEntity spring encapsula varias informacoes de uma resposta http*/
 		/* <?> qualquer tipo */
 		
-		Pedido obj = pedidoService.buscar(id);
+		Pedido obj = pedidoService.find(id);
 		//return ResponseEntity.ok().body(obj);
 		return obj != null ? ResponseEntity.ok(obj) : ResponseEntity.noContent().build();
 	}
