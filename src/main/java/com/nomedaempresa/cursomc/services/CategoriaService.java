@@ -3,10 +3,12 @@ package com.nomedaempresa.cursomc.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.nomedaempresa.cursomc.domain.Categoria;
 import com.nomedaempresa.cursomc.repositories.CategoriaRepository;
+import com.nomedaempresa.cursomc.services.exception.DataIntegrityException;
 import com.nomedaempresa.cursomc.services.exception.ObjectNotFoundException;
 
 @Service
@@ -30,5 +32,16 @@ public class CategoriaService {
 		find(obj.getId());
 		return categoriaRepository.save(obj);
 	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			categoriaRepository.deleteById(id);
+		} 
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+		}
+	}
+	
 	
 }
