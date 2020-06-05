@@ -32,10 +32,11 @@ public class CategoriaService {
 		obj.setId(null);
 		return categoriaRepository.save(obj);
 	}
-	
+		
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return categoriaRepository.save(obj);
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return categoriaRepository.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -44,7 +45,7 @@ public class CategoriaService {
 			categoriaRepository.deleteById(id);
 		} 
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+			throw new DataIntegrityException("Não é possível porque há entidades relacionadas");
 		}
 	}
 	
@@ -61,4 +62,10 @@ public class CategoriaService {
     	return new Categoria(objDto.getId(), objDto.getNome());
     }
 	
+    private void updateData (Categoria newObj, Categoria obj) {
+    	newObj.setNome(obj.getNome());
+    }
+    
+
+
 }
