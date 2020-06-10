@@ -44,6 +44,7 @@ public class CategoriaService {
 		try {
 			categoriaRepository.deleteById(id);
 		} 
+		/* DataIntegrityViolationException exececao que vem do banco de dados*/
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível porque há entidades relacionadas");
 		}
