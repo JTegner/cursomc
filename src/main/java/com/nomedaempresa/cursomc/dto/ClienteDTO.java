@@ -7,9 +7,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.nomedaempresa.cursomc.domain.Cliente;
+import com.nomedaempresa.cursomc.services.validation.ClienteUpdate;
 
 import lombok.Data;
 
+@ClienteUpdate
 @Data
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
