@@ -27,6 +27,21 @@ import lombok.EqualsAndHashCode;
 public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	/*
+	 * na requisiscao quando vier @type o jackson vai instanciar a classe que o @type informar
+	 * a anotacao @JsonTypeInfo indica que a classe pagamento tera um campo adicional o @type
+	 * eh do pacote jackson que eh o pacote que estamos usando para serializar e desserializar o json
+	 * import com.fasterxml.jackson.annotation.JsonTypeInfo;
+	 * ...
+	 * "pagamento" : {
+	 *	"numeroDeParcelas" : 10,
+	 *	"@type": "pagamentoComCartao"
+	 *	},
+	 *	...
+	 * a classe pagamneto eh abstrata nao pode ser instanciada o jackson vai instanciar a classe informada
+	 */
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
